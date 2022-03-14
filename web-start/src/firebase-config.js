@@ -7,7 +7,13 @@
  * 4. Copy the config object snippet, then add it here.
  */
 const config = {
-  /* TODO: ADD YOUR FIREBASE CONFIGURATION OBJECT HERE */
+  apiKey: "AIzaSyAjIgoZ347bfy4EK4n-mvj17Ot5Ukf8w8k",
+  authDomain: "pavithrar-firebase-dev.firebaseapp.com",
+  projectId: "pavithrar-firebase-dev",
+  storageBucket: "pavithrar-firebase-dev.appspot.com",
+  messagingSenderId: "565097540951",
+  appId: "1:565097540951:web:4bab82139adce74f4fe212",
+  measurementId: "G-CQ0XBH83CH",
 };
 
 export function getFirebaseConfig() {
