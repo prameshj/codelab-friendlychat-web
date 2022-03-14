@@ -47,6 +47,7 @@ import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import { getPerformance } from 'firebase/performance';
 
 import { getFirebaseConfig } from './firebase-config.js';
+import { Encoder, QRByte } from '@nuintun/qrcode';
 
 // Signs-in Friendly Chat.
 async function signIn() {
@@ -314,6 +315,19 @@ function createAndInsertMessage(id, timestamp) {
   return div;
 }
 
+// Display a QR code with dummy data
+function displayQRCode() {
+  const qrcode = new Encoder();
+  qrcode.setEncodingHint(true);
+  qrcode.write(
+    new QRByte('friendly chat app', data => ({
+      encoding: 26,
+      bytes: [104, 101, 108, 108, 111]
+    }))
+  );
+  qrcode.make();
+  console.log(qrcode.toDataURL());
+}
 // Displays a Message in the UI.
 function displayMessage(id, timestamp, name, text, picUrl, imageUrl) {
   var div =
@@ -391,10 +405,14 @@ imageButtonElement.addEventListener('click', function (e) {
 });
 mediaCaptureElement.addEventListener('change', onMediaFileSelected);
 
+console.log("INIT FIREBASE AUTH");
 const firebaseAppConfig = getFirebaseConfig();
 initializeApp(firebaseAppConfig);
 
 // TODO 12: Initialize Firebase Performance Monitoring
 
+console.log("INIT FIREBASE AUTH");
 initFirebaseAuth();
+console.log("Displaying QR code");
+displayQRCode();
 loadMessages();
